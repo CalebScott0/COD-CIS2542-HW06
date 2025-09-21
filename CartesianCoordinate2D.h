@@ -1,6 +1,6 @@
 #ifndef CARTESIANCOORDINATE2D_H
 #define CARTESIANCOORDINATE2D_H
-#include <iostream>
+#include <ostream>
 
 class CartesianCoordinate2D
 {
@@ -20,7 +20,7 @@ public:
 
     // overloaded operators
     CartesianCoordinate2D& operator =(const CartesianCoordinate2D& rhs);
-    CartesianCoordinate2D operator -(const CartesianCoordinate2D& rhs);
+    CartesianCoordinate2D operator -(const CartesianCoordinate2D& rhs) const;
     CartesianCoordinate2D& operator -=(const CartesianCoordinate2D& rhs);
     bool operator >(const CartesianCoordinate2D& rhs) const;
 

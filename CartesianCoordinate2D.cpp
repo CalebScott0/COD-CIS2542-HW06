@@ -12,14 +12,14 @@ CartesianCoordinate2D::CartesianCoordinate2D(double X, double Y)
     : x(X),
       y(Y)
 {
-    // TODO: exception here for entering a non numeric value?
+    // Empty.
 }
 
 CartesianCoordinate2D::CartesianCoordinate2D(const CartesianCoordinate2D& rhs)
     : x(rhs.x),
       y(rhs.y)
 {
-    // Empty
+    // Empty.
 }
 
 double CartesianCoordinate2D::getX() const
@@ -44,33 +44,36 @@ void CartesianCoordinate2D::setY(double Y)
 
 double CartesianCoordinate2D::getDistanceFromOrigin() const
 {
-    return sqrt((x * x) + (y * y));
+    return std::hypot(x, y);
 }
 
 int CartesianCoordinate2D::getQuadrant() const
 {
-    // If a point is on any axis, return the value 0
-    if(x == 0 || y == 0)
-    {
-        return 0;
-    }
 
-    else if(x > 0)
+    if(x > 0)
     {
         if(y > 0)
         {
             return 1;
         }
-        return 4;
+        if(y < 0)
+        {
+            return 4;
+        }
     }
-    else
+    else if(x < 0)
     {
         if(y > 0)
         {
             return 2;
         }
-        return 3;
+        if(y < 0)
+        {
+            return 3;
+        }
     }
+    // any point on an axis
+    return 0;
 }
 
 CartesianCoordinate2D& CartesianCoordinate2D::operator =(const CartesianCoordinate2D& rhs)
@@ -81,7 +84,7 @@ CartesianCoordinate2D& CartesianCoordinate2D::operator =(const CartesianCoordina
     return *this;
 }
 
-CartesianCoordinate2D CartesianCoordinate2D::operator -(const CartesianCoordinate2D& rhs)
+CartesianCoordinate2D CartesianCoordinate2D::operator -(const CartesianCoordinate2D& rhs) const
 {
     return CartesianCoordinate2D(x - rhs.x, y - rhs.y);
 }
@@ -96,6 +99,7 @@ CartesianCoordinate2D& CartesianCoordinate2D::operator -=(const CartesianCoordin
 
 bool CartesianCoordinate2D::operator >(const CartesianCoordinate2D& rhs) const
 {
+    // > returns true if *this* is FARTHER from the origin than rhs.
     return getDistanceFromOrigin() > rhs.getDistanceFromOrigin();
 }
 
