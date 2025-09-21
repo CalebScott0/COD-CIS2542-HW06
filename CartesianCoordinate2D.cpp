@@ -49,7 +49,6 @@ double CartesianCoordinate2D::getDistanceFromOrigin() const
 
 int CartesianCoordinate2D::getQuadrant() const
 {
-
     if(x > 0)
     {
         if(y > 0)
