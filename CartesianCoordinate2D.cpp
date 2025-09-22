@@ -44,7 +44,7 @@ void CartesianCoordinate2D::setY(double Y)
 
 double CartesianCoordinate2D::getDistanceFromOrigin() const
 {
-    return std::hypot(x, y);
+    return sqrt((x * x) + (y * y));
 }
 
 int CartesianCoordinate2D::getQuadrant() const
